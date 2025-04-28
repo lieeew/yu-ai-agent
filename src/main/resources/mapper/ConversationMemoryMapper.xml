@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yupi.yuaiagent.mapper.ConversationMemoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.yupi.yuaiagent.model.domain.ConversationMemory">
+            <id property="id" column="id" />
+            <result property="conversationId" column="conversation_id" />
+            <result property="type" column="type" />
+            <result property="memory" column="memory" />
+            <result property="createdAt" column="created_at" />
+            <result property="updatedAt" column="updated_at" />
+            <result property="isDelete" column="is_delete" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,conversation_id,type,memory,created_at,updated_at,
+        is_delete
+    </sql>
+</mapper>
