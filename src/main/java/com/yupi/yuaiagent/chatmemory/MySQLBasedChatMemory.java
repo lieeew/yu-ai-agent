@@ -34,15 +34,13 @@ public class MySQLBasedChatMemory implements ChatMemory {
 
     @Override
     public void add(String conversationId, List<Message> messages) {
-        List<ConversationMemory> conversationMemories = new ArrayList<>();
         Gson gson = new Gson();
-        for (Message message : messages) {
+        List<ConversationMemory> conversationMemories = messages.stream().map(message -> {
             String messageType = message.getMessageType().getValue();
             String mes = gson.toJson(message);
-            ConversationMemory conversationMemory = ConversationMemory.builder().conversationId(conversationId)
+            return ConversationMemory.builder().conversationId(conversationId)
                     .type(messageType).memory(mes).build();
-            conversationMemories.add(conversationMemory);
-        }
+        }).toList();
         conversationMemoryDAO.saveBatch(conversationMemories);
     }
 
